@@ -1,0 +1,6 @@
+streamlit
+transformers[torch]
+torch              # ensure a PyTorch build compatible with the GPU
+accelerate         # for faster loading & device‐map
+bitsandbytes
+safetensors
