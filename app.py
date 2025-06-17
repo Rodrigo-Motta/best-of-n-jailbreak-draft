@@ -238,7 +238,7 @@ def attack_loop(args: SimpleNamespace,
                 succ_answers.append(reply)
 
                 # write into the container as soon as we see it
-                with results_container.expander(f"Violation #{len(succ_prompts)} (batch {batch_idx})"):
+                with results_container.expander(f"Possible Violation #{len(succ_prompts)} (batch {batch_idx})"):
                     st.markdown("**Corrupted prompt:**")
                     st.code(attack)
                     st.markdown("**Assistant reply:**")
@@ -246,7 +246,7 @@ def attack_loop(args: SimpleNamespace,
 
         # update progress and status
         pbar.progress(batch_idx / total_batches, text=f"Batch {batch_idx}/{total_batches}")
-        status.info(f"Violations found so far: {len(succ_prompts)}")
+        status.info(f"Possible violations found so far: {len(succ_prompts)}")
 
     return succ_answers, succ_prompts
 
@@ -292,7 +292,7 @@ if run:
     answers, prompts = attack_loop(args, pipe, pbar, status, live_results)
 
     # at the end, offer downloads
-    st.subheader(f"🎯 Total policy violations: {len(prompts)}")
+    st.subheader(f"🎯 Total policy possible violations: {len(prompts)}")
     if prompts:
         col1, col2 = st.columns(2)
         with col1:
