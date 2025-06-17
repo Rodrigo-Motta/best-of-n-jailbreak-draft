@@ -371,12 +371,12 @@ def load_pipeline(model_name: str, device: str, quant: str):
 
     # Build the pipeline
     # device=0 => first GPU; device="mps" => Apple GPU; device=-1 => CPU
-    device_arg = 0 if device == "cuda" else ("mps" if device == "mps" else -1)
+    #device_arg = 0 if device == "cuda" else ("mps" if device == "mps" else -1)
     pipe = pipeline(
         "text-generation",
         model=model,
         tokenizer=tokenizer,
-        device=device_arg,
+        #device=device_arg
     )
     # ensure padding works
     pipe.tokenizer.pad_token_id = pipe.tokenizer.eos_token_id
